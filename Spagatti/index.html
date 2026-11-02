@@ -1,0 +1,66 @@
+<html>
+    <head>
+        <title>Gatti casuali</title>
+        <style>
+        
+        #gatto-casuale{
+            height: 420px;
+        }
+        .centrato{
+            text-align: center;
+        }
+        #bottone-ricerca{
+            font-size: 24px;
+            background-color: blueviolet;
+            padding: 6px;
+            border-radius: 6px;
+            color:white;
+            border:1px solid grey;
+        }
+
+        #bottone-ricerca:hover{
+            font-size:35px;
+            border: 4px solid violet;
+        }
+        </style>
+    </head>
+    <body>
+        <div class="centrato">
+
+            <button id="bottone-ricerca" >Ricarica gatto</button></br></br>
+            <img id="gatto-casuale" src="" alt = "Gatto casuale">
+
+        </div>
+        
+
+
+
+        <script>
+            const immagine = document.getElementById("gatto-casuale");//crea il collegamento fra lo script e html
+            const bottone = document.getElementById("bottone-ricerca");
+
+            async function getRandomCat(){   // (async) significa che se sta aspettando delle informazioni il sito lavora lo stesso senza bloccarlo
+                const url= "https://cataas.com/cat?json=true";//url da dove prendere l'immagine
+
+                try{
+                    const response = await fetch(url); // await aspetto la recezzione dei dati bloccando questa parte del codice ma facendo girare il resto del sito 
+                    if(response.ok){
+
+                        const cat = await response.json();
+                        console.log(cat);
+                        immagine.src = cat.url
+                        
+                    }
+                }catch(e){
+                    console.log(e.message); //println=console.log
+                }
+            }
+
+            bottone.addEventListener("click", () => { // oppure bottone.addEventListener("click",getRandomCat); // per fare diventare la pagina il single page application, quindi quando si clicca non ricarica tutta la pagina
+        
+                getRandomCat();
+            });
+            getRandomCat();//questo quando ricarica la pagina per la prima volta 
+        </script>
+    </body>
+</html>

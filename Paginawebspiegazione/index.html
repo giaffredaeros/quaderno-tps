@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <title>Manipolazione del DOM con javaScript</title>
+    </head>
+    <body>
+        <button id="bottone">
+            PREMI QUI
+          </button>
+
+          <input id="testo-todo"type="text">
+          
+          
+          <div id="contenitore"></div>
+
+          <script>
+            
+            let btn = document.getElementById("bottone");
+            let input = document.getElementById("testo-todo");
+            let contenitoreSaluto=document.getElementById("contenitore");
+
+            let saluti=["hello, world","ciao, Mondo","buna,lumi"];
+
+            btn.addEventListener("click", () => {
+
+            //creo un div e gli assegno un contenuto
+            let nuovoDiv=document.createElement("div");
+            nuovoDiv.textContent=input.value;  //mettiamo quello che l'utente ha messo nel input
+          
+            //TODO scegliamo un saluto casuale
+            
+
+            //inserisco il nuovo div come figlio del cotenitore
+            contenitoreSaluto.appendChild(nuovoDiv);
+                            
+            });
+
+          </script>
+    </body>
+</html>
